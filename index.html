@@ -204,6 +204,43 @@ table.t tr.link{cursor:pointer}table.t tr.link:hover td{background:#ffffff06}
  .card-head{flex-wrap:wrap}
  .kpi .big{font-size:1.4rem}
 }
+.pl-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--muted)}.pl-legend span{display:inline-flex;align-items:center;gap:5px}.pl-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.pl-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.pl-day{background:#0b1827;border:1px solid var(--line);border-radius:14px;padding:10px;min-height:260px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pl-day.today{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal) inset}
+.pl-day.we{opacity:.8}
+.pl-dh{display:flex;justify-content:space-between;align-items:baseline}.pl-dh b{font-size:1.25rem}.pl-dh span{color:var(--muted);font-size:.7rem;text-transform:uppercase;font-weight:700}
+.pl-day.today .pl-dh span{color:var(--teal)}
+.pl-body{display:flex;flex-direction:column;gap:7px;min-width:0;flex:1}
+.pl-job{border-radius:10px;padding:8px 9px;background:color-mix(in srgb,var(--c) 16%,#0b1827);border-left:3px solid var(--c)}
+.pl-job b{display:block;font-size:.82rem;overflow-wrap:anywhere}.pl-job small{color:var(--muted);font-size:.7rem;display:block;line-height:1.35}
+.pl-free{color:var(--faint);font-size:.74rem;padding:6px 2px;border:1px dashed #ffffff14;border-radius:10px;text-align:center}
+.pl-evt{font-size:.72rem;background:#fbbf2414;border:1px solid #fbbf2433;border-radius:8px;padding:5px 7px;overflow-wrap:anywhere}.pl-evt span{color:var(--gold);font-weight:700}
+.pl-kid{font-size:.68rem;color:var(--muted);font-weight:700;margin-top:2px}
+.pl-slots{display:flex;flex-wrap:wrap;gap:4px}
+.pl-s{font-size:.66rem;font-weight:750;padding:3px 6px;border-radius:6px;border:1px solid}
+.pl-s.c{background:#2dd4bf1f;border-color:#2dd4bf88;color:#5eead4}
+.pl-s.p{background:#fbbf2414;border-color:#fbbf2488;color:#fcd34d}
+.pl-s.n{background:transparent;border-color:#ffffff14;color:var(--faint);text-decoration:line-through}
+.pl-s.ca{background:#a78bfa22;border-color:#a78bfa88;color:#c4b5fd}
+.pl-warn{font-size:.68rem;line-height:1.35;color:#fda4af;background:#fb718514;border:1px solid #fb718544;border-radius:8px;padding:6px 7px}
+.pl-note{font-size:.7rem;color:var(--muted);border-top:1px solid #ffffff0b;padding-top:6px;margin-top:auto}
+.pl-sum{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #ffffff0b;font-size:.8rem;color:var(--muted)}.pl-sum b{color:var(--ink)}
+.pl-info{display:flex;align-items:flex-start;gap:10px;padding:10px 4px;border-bottom:1px solid #ffffff0b}.pl-info:last-child{border-bottom:0}
+.pl-cb{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);background:transparent;flex:none;margin-top:1px;display:grid;place-items:center;font-size:.7rem;color:#04211d;font-weight:900;padding:0;cursor:pointer}.pl-cb.ok{background:var(--teal);border-color:var(--teal)}
+.pl-t{flex:1;min-width:0}.pl-t b{font-weight:600;font-size:.88rem;overflow-wrap:anywhere}.pl-t small{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}
+.pl-info.done .pl-t b{color:var(--faint);text-decoration:line-through}
+.pl-tag{font-size:.66rem;font-weight:800;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.pl-del{border:0;background:#ffffff0a;color:var(--muted);width:26px;height:26px;border-radius:8px;cursor:pointer}
+.pl-empty{color:var(--muted);font-size:.85rem;padding:12px 4px;line-height:1.5}
+.pl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}.pl-head h3{margin:0;font-size:1.05rem}.pl-head p{margin:3px 0 0;color:var(--muted);font-size:.8rem}
+.pl-nav{display:flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px}.pl-nav button{border:0;background:transparent;width:32px;height:32px;border-radius:9px;color:var(--muted);font-size:1.1rem;cursor:pointer}.pl-nav span{min-width:170px;text-align:center;font-weight:700;font-size:.88rem}
+.pl-nav .tdy{width:auto;padding:0 10px;font-size:.75rem;font-weight:700}
+@media(max-width:760px){.pl-week{grid-template-columns:1fr}.pl-day{min-height:0;flex-direction:row;align-items:flex-start;gap:12px}.pl-dh{width:52px;flex:none;flex-direction:column;align-items:flex-start}.pl-day.we.empty{display:none}.pl-nav span{min-width:0;flex:1;font-size:.82rem}.pl-nav{width:100%}}
+.share-chip{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:750;color:#c4b5fd;background:#a78bfa1f;border:1px solid #a78bfa55;border-radius:99px;padding:5px 11px;cursor:pointer}
+.share-chip.on{color:#5eead4;background:#2dd4bf14;border-color:#2dd4bf55}
+.note-add{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.note-add input,.note-add select{background:#0b1827;border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--ink)}.note-add #nText{flex:1;min-width:180px}
+.share-link{width:100%;background:#0b1827;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--ink);font-size:.8rem}
 </style>
 </head>
 <body>
@@ -222,12 +259,10 @@ table.t tr.link{cursor:pointer}table.t tr.link:hover td{background:#ffffff06}
   </div>
 
   <section class="view" id="view-home"><div class="content">
-   <div class="grid g4" id="homeCards"></div>
+   <div class="card"><div class="pl-head"><div><h3>Planning</h3><p>Missions, agenda et réservations des enfants</p><div style="margin-top:8px"><button class="share-chip" id="shareBtn">👥 Partager avec ma compagne</button></div></div><div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;max-width:100%"><div class="pl-nav"><button id="plPrev" aria-label="Semaine précédente">‹</button><span id="planWeekLbl"></span><button id="plNext" aria-label="Semaine suivante">›</button><button class="tdy" id="plToday">Auj.</button></div><div id="plLegend"></div></div></div><div id="planGrid"></div></div>
+   <div class="card" style="margin-top:16px"><div class="pl-head"><div><h3>Infos de la semaine</h3><p>Tes notes à compléter, rattachées à un jour ou générales</p></div></div><div id="notesList"></div>
+    <form class="note-add" id="noteForm"><input id="nText" placeholder="Ajouter une info…" required autocomplete="off"><input id="nDate" type="date" title="Date (facultatif)"><select id="nTag"><option value="">Étiquette</option><option>Important</option><option>Enfants</option><option>Travail</option><option>Perso</option></select><button class="btn primary">Ajouter</button></form></div>
    <div class="card" style="margin-top:16px"><div class="card-head"><div><h3>Mon agenda Google ↔ Mes activités</h3><p id="agendaSub">Les dates de ton agenda à transformer en activités</p></div><div class="row-btns"><button class="btn sm primary" id="gCalPull">Actualiser depuis Google Agenda</button><label class="btn sm" style="cursor:pointer">Importer un .ics<input type="file" id="icsIn" accept=".ics,text/calendar" hidden></label><button class="btn sm" id="icsOut">Envoyer mes activités vers l’agenda</button><button class="btn sm" id="icsHelp">Comment faire ?</button></div></div><div class="list" id="agendaList"></div></div>
-   <div class="grid g-2-1" style="margin-top:16px">
-    <div class="card"><div class="card-head"><div><h3>À venir prochainement</h3><p>Paiements, échéances et missions des 45 prochains jours</p></div></div><div class="list" id="upcoming"></div></div>
-    <div class="card"><div class="card-head"><div><h3>Budget du mois</h3><p id="homeBudgetSub"></p></div><button class="btn sm" data-go="budget">Ouvrir</button></div><div id="homeBudget"></div></div>
-   </div>
   </div></section>
 
   <section class="view" id="view-inter"><div id="interHost"></div></section>
@@ -354,9 +389,49 @@ table.t tr.link{cursor:pointer}table.t tr.link:hover td{background:#ffffff06}
  <div class="dlg-f"><button type="button" class="btn danger" id="dDel">Supprimer</button><button class="btn primary" value="ok">Enregistrer</button></div>
 </form></dialog>
 
+<dialog id="shareDlg"><div class="dlg-h"><h3>Partager le planning</h3><button type="button" class="x" data-close>✕</button></div><div class="dlg-b" id="shareBody" style="line-height:1.55;font-size:.88rem"></div></dialog>
 <div class="toast" id="toast"></div>
 
 <script>
+/* ---------- Planning : rendu partagé (appli + vue compagne) ---------- */
+const PL=(()=>{
+ const pad=n=>String(n).padStart(2,'0');
+ const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+ const pD=s=>new Date(s+'T12:00:00');
+ const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const monday=d=>{const x=new Date(d);x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x};
+ const addDays=(s,n)=>{const d=pD(s);d.setDate(d.getDate()+n);return iso(d)};
+ const hh=t=>t?t.replace(':00',' h').replace(/^0/,'').replace(':',' h '):'';
+ const SL={matin:'Matin',cantine:'Cantine',soir:'Soir',centre:'Centre aéré'};
+ const TAGS={Important:['#fb718522','#fda4af'],Enfants:['#a78bfa22','#c4b5fd'],Travail:['#2dd4bf1f','#5eead4'],Perso:['#ffffff12','#91a2b7'],Autre:['#60a5fa1f','#93c5fd']};
+ function weekLabel(ws){const we=addDays(ws,6);const o={day:'numeric',month:'short'};return `Sem. du ${pD(ws).toLocaleDateString('fr-FR',{day:'numeric'})} au ${pD(we).toLocaleDateString('fr-FR',o).replace('.','')}`}
+ function alerts(day,children){const out=[];const wd=pD(day.date).getDay();if(!day.jobs.length||wd===0||wd===6)return out;
+  const late=day.jobs.some(j=>!j.et||j.et>='17:30'||j.multi),early=day.jobs.some(j=>j.st&&j.st<='08:30');
+  children.forEach(c=>{const k=day.kids?.[c.id];if(!k)return;const nm=children.length>1?` (${c.name})`:'';
+   if(k.centre>=0&&k.centre!==2)out.push(`Tu travailles et le centre aéré n’est pas confirmé${nm}`);
+   if(late&&k.soir>=0&&k.soir!==2)out.push(`Tu finis ${day.jobs[0].et?'à '+hh(day.jobs[0].et):'tard'} et le péri du soir n’est pas confirmé${nm}`);
+   if(early&&k.matin>=0&&k.matin!==2)out.push(`Tu commences tôt et le péri du matin n’est pas confirmé${nm}`)});return out}
+ function render(data,ws,opt={}){const today=opt.today||iso(new Date());let html='<div class="pl-week">';let nJobs=0,nH=0,nRes=0,nPend=0;
+  for(let i=0;i<7;i++){const d=addDays(ws,i);const day=data.days[d]||{jobs:[],ev:[],kids:{}};day.date=d;day.jobs=day.jobs||[];day.ev=day.ev||[];const notes=(data.notes||[]).filter(n=>n.date===d&&!n.done);
+   const we=i>=5;const empty=!day.jobs.length&&!day.ev.length&&!notes.length;
+   let b='';
+   if(day.jobs.length)day.jobs.forEach(j=>{nJobs++;nH+=Number(j.h||0);b+=`<div class="pl-job" style="--c:${esc(j.c||'#2dd4bf')}"><b>${esc(j.e)}</b><small>${j.st?`${hh(j.st)} – ${hh(j.et)}`:'Journée'}${j.h?` · ${j.h} h`:''}${j.loc?`<br>${esc(j.loc)}`:''}</small></div>`});
+   else b+=`<div class="pl-free">${we?'Repos':'Pas de mission'}</div>`;
+   (data.children||[]).forEach(c=>{const k=day.kids?.[c.id];if(!k)return;const chips=Object.keys(SL).filter(s=>k[s]>=0).map(s=>{const st=k[s];if(st===2)nRes++;if(st===1){nRes++;nPend++}const cls=s==='centre'?(st===2?'ca':st===1?'p':'n'):(st===2?'c':st===1?'p':'n');return`<span class="pl-s ${cls}">${SL[s]}${s==='centre'&&k.vac?' vac.':''}${st===2&&s==='centre'?' ✓':st===1?' ?':''}</span>`}).join('');if(chips)b+=`<div class="pl-kid">${esc(c.name)}</div><div class="pl-slots">${chips}</div>`});
+   day.ev.forEach(e=>b+=`<div class="pl-evt">${e.tm?`<span>${esc(e.tm)}</span> `:''}${esc(e.t)}</div>`);
+   alerts(day,data.children||[]).forEach(a=>b+=`<div class="pl-warn">⚠ ${esc(a)}</div>`);
+   notes.forEach(n=>b+=`<div class="pl-note">📝 ${esc(n.text)}</div>`);
+   const dn=pD(d).toLocaleDateString('fr-FR',{weekday:'short'}).replace('.','');
+   html+=`<div class="pl-day${d===today?' today':''}${we?' we':''}${we&&empty?' empty':''}"><div class="pl-dh"><span>${dn}${d===today?' · auj.':''}</span><b>${pD(d).getDate()}</b></div><div class="pl-body">${b}</div></div>`}
+  html+='</div>';
+  html+=`<div class="pl-sum"><span>Cette semaine : <b>${nJobs} mission${nJobs>1?'s':''} · ${nH} h</b></span><span>Enfants : <b>${nRes} réservation${nRes>1?'s':''}</b>${nPend?` dont <b style="color:var(--gold)">${nPend} à confirmer</b>`:''}</span>${data.counter?`<span>Compteur : <b>${data.counter.hours} h / ${data.counter.req} h</b></span>`:''}</div>`;
+  return html}
+ function notesList(notes,ws,opt={}){const we=addDays(ws,6);const list=(notes||[]).filter(n=>!n.done||(n.doneAt||'')>=ws).filter(n=>!n.date||n.date<=we||!n.done).sort((a,b)=>(a.done-b.done)||((a.date||'9999').localeCompare(b.date||'9999')));
+  if(!list.length)return`<div class="pl-empty">${opt.editable?'Aucune info pour l’instant. Ajoute ce qu’il ne faut pas oublier : rendez-vous, papiers, sorties…':'Aucune info pour le moment.'}</div>`;
+  return list.map(n=>{const t=TAGS[n.tag]||TAGS.Autre;return`<div class="pl-info${n.done?' done':''}">${opt.editable?`<button class="pl-cb${n.done?' ok':''}" data-ntog="${esc(n.id)}" aria-label="Fait">${n.done?'✓':''}</button>`:`<span class="pl-cb${n.done?' ok':''}">${n.done?'✓':''}</span>`}<div class="pl-t"><b>${esc(n.text)}</b><small>${n.date?pD(n.date).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'short'}):'Sans date'}</small></div>${n.tag?`<span class="pl-tag" style="background:${t[0]};color:${t[1]}">${esc(n.tag)}</span>`:''}${opt.editable?`<button class="pl-del" data-ndel="${esc(n.id)}" aria-label="Supprimer">×</button>`:''}</div>`}).join('')}
+ const legend=`<div class="pl-legend"><span><i style="background:#2dd4bf"></i>Mission</span><span><i style="background:#fbbf24"></i>Agenda</span><span><i style="background:#2dd4bf44;border:1px solid #2dd4bf"></i>Réservé</span><span><i style="background:#fbbf2433;border:1px solid #fbbf24"></i>À confirmer</span><span><i style="background:#a78bfa44;border:1px solid #a78bfa"></i>Centre aéré</span></div>`;
+ return{render,notesList,weekLabel,monday:d=>iso(monday(d)),addDays,iso,legend}})();
+
 /* ---------- Données de Mon Intermittence (lecture partagée) ---------- */
 const INTER_KEY='mon-intermittence-v1';
 const INTER_SEED=(()=>{const clone=v=>v==null?v:JSON.parse(JSON.stringify(v));
@@ -368,6 +443,7 @@ const SPACE_KEY='mon-espace-v1';
 const G={dirty(){}};
 
 const ICONS={
+ plan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18M7 14h3M7 17.5h3M14 14h3M14 17.5h3"/></svg>',
  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>',
  inter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4a3 3 0 0 0 0 6v6H4v-6a3 3 0 0 0 0-6z"/><path d="M9 9l1.5 3L9 15M15 9l-1.5 3L15 15"/></svg>',
  budget:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h15V9H5a2 2 0 0 1-2-2z"/><circle cx="16" cy="14.5" r="1.3"/></svg>',
@@ -379,7 +455,7 @@ const ICONS={
  wallet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>'
 };
 const APPS=[
- {id:'home',name:'Vue globale',ico:'home'},
+ {id:'home',name:'Planning',short:'Planning',ico:'plan'},
  {id:'inter',name:'Mon Intermittence',short:'Interm.',ico:'inter'},
  {id:'budget',name:'Mon Budget',short:'Budget',ico:'budget'},
  {id:'resa',name:'Réservations',short:'Résa',ico:'resa'},
@@ -414,12 +490,13 @@ const DEFAULT={
  budget:{rows:null,carry:{}},
  resa:{children:[{id:'c1',name:'Enfant 1'}],rates:{matin:3.05,cantine:5.50,soir:3.05,mercredi:18.41,vacances:null},payOffset:1,payDay:10,days:{},vacWeeks:{},portals:{famille:'https://app.monespacefamille.fr/news/list',loisirs:'https://charlotte-loisirs.portail-defi.net/'}},
  tax:{rate:null,taxableRatio:79,finalTax:{},deadlines:[],docs:[]},
- agenda:{events:[],linked:{},ignored:{},imported:'',autoPush:true,pushed:{},reminders:{}}
+ agenda:{events:[],linked:{},ignored:{},imported:'',autoPush:true,pushed:{},reminders:{}},
+ notes:[],share:null
 };
 const SECS=[{k:'revenus',l:'Revenus',c:'#2dd4bf',add:'+ Ajouter un revenu'},{k:'fixes',l:'Charges fixes',c:'#fbbf24',add:'+ Ajouter une ligne'},{k:'credits',l:'Crédits',c:'#60a5fa',add:'+ Ajouter un crédit'},{k:'courantes',l:'Dépenses courantes',c:'#34d399',add:'+ Ajouter une ligne'},{k:'ponctuelles',l:'Dépenses ponctuelles',c:'#fb923c',add:'+ Ajouter une ligne'}];
 const DEFAULT_ROWS=()=>[['fixes','Loyer',940,5],['fixes','Énergie',326.51,10],['fixes','Eau',69.45,10],['fixes','Assurance',34.06,10],['fixes','Mutuelle',72,10],['fixes','Gaz + mobile',0,10],['credits','Voiture',268,5],['credits','Prêt',481.08,5],['courantes','Courses',0,15],['courantes','Essence / transport',0,15],['courantes','Enfants',0,15],['courantes','Loisirs',0,15],['courantes','Imprévus',0,15],['ponctuelles','Dépense exceptionnelle',0,15]].map(([sec,label,base,day],i)=>({id:'row-'+i,sec,label,base,day,start:'',end:'',note:'',vals:{}}));
 let S=loadSpace();if(!Array.isArray(S.budget.rows))S.budget.rows=DEFAULT_ROWS();S.budget.carry=S.budget.carry||{};
-function loadSpace(){const d=store(SPACE_KEY)||{};const c=JSON.parse(JSON.stringify(DEFAULT));return{settings:{...c.settings,...d.settings},budget:{...c.budget,...d.budget},resa:{...c.resa,...d.resa,rates:{...c.resa.rates,...(d.resa||{}).rates},portals:{...c.resa.portals,...(d.resa||{}).portals}},tax:{...c.tax,...d.tax},agenda:{...c.agenda,...d.agenda}}}
+function loadSpace(){const d=store(SPACE_KEY)||{};const c=JSON.parse(JSON.stringify(DEFAULT));return{settings:{...c.settings,...d.settings},budget:{...c.budget,...d.budget},resa:{...c.resa,...d.resa,rates:{...c.resa.rates,...(d.resa||{}).rates},portals:{...c.resa.portals,...(d.resa||{}).portals}},tax:{...c.tax,...d.tax},agenda:{...c.agenda,...d.agenda},notes:Array.isArray(d.notes)?d.notes:[],share:d.share||null}}
 function save(msg='Enregistré'){storeSet(SPACE_KEY,S);renderAll();if(msg)toast(msg)}
 function inter(){const d=store(INTER_KEY);const st=d&&Array.isArray(d.jobs)?d:JSON.parse(JSON.stringify(INTER_SEED));st.settings={...INTER_SEED.settings,...(st.settings||{})};st.monthlyAre=st.monthlyAre||{};st.monthlyFranchiseDays=st.monthlyFranchiseDays||{};st.rights=st.rights&&st.rights.length?st.rights:INTER_SEED.rights;st.holidayStatements=st.holidayStatements||[];return st}
 let I=inter();
@@ -470,7 +547,7 @@ function renderNav(){$('#sideNav').innerHTML=navHtml(false);$('#mobNav').innerHT
 document.querySelector('[data-ico="settings"]').innerHTML=ICONS.settings;
 document.addEventListener('click',e=>{const v=e.target.closest('[data-view],[data-go]');if(v){go(v.dataset.view||v.dataset.go)}});
 function go(v){view=v;document.querySelectorAll('.view').forEach(s=>s.classList.toggle('active',s.id==='view-'+v));document.body.classList.toggle('inter',v==='inter');if(v==='inter')ensureFrame();else{I=inter();renderAll()}renderNav();renderTop();window.scrollTo(0,0)}
-function renderTop(){const titles={home:[S.settings.name?`Bonjour ${S.settings.name},`:'Bonjour,',cap(mLabel(cursor))],budget:['Mon Budget','Revenus et dépenses par mois de paiement'],resa:['Réservations','Cantine, périscolaire et centre aéré'],tax:['Mes Impôts',`Année ${cursor.slice(0,4)} · revenus perçus`],settings:['Paramètres','Règles de paiement et sauvegarde'],inter:['Mon Intermittence','']};const[t,s]=titles[view];$('#topTitle').textContent=t;$('#topSub').textContent=s;$('#monthLabel').textContent=view==='tax'?cursor.slice(0,4):mLabel(cursor);$('#monthNav').style.visibility=view==='settings'?'hidden':'visible'}
+function renderTop(){const titles={home:[S.settings.name?`Bonjour ${S.settings.name},`:'Bonjour,','Planning de la semaine'],budget:['Mon Budget','Revenus et dépenses par mois de paiement'],resa:['Réservations','Cantine, périscolaire et centre aéré'],tax:['Mes Impôts',`Année ${cursor.slice(0,4)} · revenus perçus`],settings:['Paramètres','Règles de paiement et sauvegarde'],inter:['Mon Intermittence','']};const[t,s]=titles[view];$('#topTitle').textContent=t;$('#topSub').textContent=s;$('#monthLabel').textContent=view==='tax'?cursor.slice(0,4):mLabel(cursor);$('#monthNav').style.visibility=(view==='settings'||view==='home')?'hidden':'visible'}
 $('#prev').onclick=()=>{cursor=addM(cursor,view==='tax'?-12:-1);resaWeek=null;btStart=null;renderAll()};
 $('#next').onclick=()=>{cursor=addM(cursor,view==='tax'?12:1);resaWeek=null;btStart=null;renderAll()};
 
@@ -500,21 +577,24 @@ $('#icsHelp').onclick=()=>$('#helpDlg').showModal();
 $('#icsOut').onclick=()=>{const lim=new Date(today);lim.setDate(lim.getDate()-31);const L=iso(lim);const jobs=I.jobs.filter(j=>j.endDate>=L);if(!jobs.length){toast('Aucune activité récente à envoyer');return}const st=s=>s.replace(/[-:]/g,'');const escI=s=>String(s||'').replace(/([,;\\])/g,'\\$1');const stamp=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';const L2=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Mon Espace//FR','CALSCALE:GREGORIAN'];jobs.forEach(j=>{L2.push('BEGIN:VEVENT',`UID:${j.calendarUid&&!j.calendarUid.includes('#')?j.calendarUid:j.id+'@mon-intermittence'}`,`DTSTAMP:${stamp}`,`DTSTART:${st(j.startDate)}T${st(j.startTime||'09:00')}00`,`DTEND:${st(j.endDate)}T${st(j.endTime||'18:00')}00`,`SUMMARY:${escI('Mission — '+j.employer)}`,`LOCATION:${escI(j.location)}`,`DESCRIPTION:${escI(`${j.category||''} · ${j.hours} h · ${j.gross} € brut · ${j.status==='paid'?'payée':j.status==='confirmed'?'confirmée':'prévisionnelle'}`)}`,'END:VEVENT')});L2.push('END:VCALENDAR');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L2.join('\r\n')],{type:'text/calendar'}));a.download=`mes-activites-${TODAY}.ics`;a.click();toast(`${jobs.length} activité(s) exportée(s)`)};
 
 /* ---------- Vue globale ---------- */
-function renderHome(){renderAgenda();const b=budgetMonth(cursor);const im=interMonth(cursor);const rn=renewal();const pct=Math.min(100,rn.hours/rn.req*100);const r=resaMonth(cursor);const payM=addM(cursor,S.resa.payOffset);const nextDl=S.tax.deadlines.filter(d=>!d.paid&&d.date>=TODAY).sort((a,b)=>a.date.localeCompare(b.date))[0];const ty=taxYear(Number(cursor.slice(0,4)));
- $('#homeCards').innerHTML=[
-  card('inter','Mon Intermittence',agendaPending().length?`<span style="color:var(--gold)">${agendaPending().length} date(s) d’agenda à compléter</span>`:`Annexe 8 · renouvellement`,`<div class="big">${rn.hours} h <small>/ ${rn.req} h</small></div><div class="bar"><i style="width:${pct}%"></i></div><div class="small muted">${im.h} h en ${mLabel(cursor,{month:'long'})} · ${euro0(im.gross)} brut · ARE ${euro0(im.are)}</div>`),
-  card('budget','Mon Budget','Reste disponible',`<div class="big" style="color:${b.rest<0?'var(--red)':'inherit'}">${euro0(b.rest)}</div><div class="small muted">${euro0(b.ti)} de revenus · ${euro0(b.te)} de dépenses</div>`),
-  card('resa','Réservations',`${cap(mLabel(cursor,{month:'long'}))}`,`<div class="big">${euro(r.total)}</div><div class="small muted">${r.planned?`<span style="color:var(--gold)">${euro(r.planned)} à confirmer</span> · `:''}Payé le ${fDate(dayOf(payM,S.resa.payDay),{day:'numeric',month:'long'})}${r.missing?` · <span style="color:var(--gold)">${r.missing} tarif(s) manquant(s)</span>`:''}</div>`),
-  card('tax','Mes Impôts',nextDl?'Prochaine échéance':'Prélèvement à la source',nextDl?`<div class="big">${euro0(nextDl.amount)}</div><div class="small muted">${esc(nextDl.label)} · ${fDate(nextDl.date)}</div>`:`<div class="big">${euro0(ty.pas)}</div><div class="small muted">Estimé en ${cursor.slice(0,4)} · taux ${taxRate().toLocaleString('fr-FR')} %</div>`)
- ].join('');
- // À venir
- const ev=[];const lim=new Date(today);lim.setDate(lim.getDate()+45);const LIM=iso(lim);
- [ymOf(today),addM(ymOf(today),1)].forEach(m=>{const bm=budgetMonth(m);bm.inc.forEach(x=>ev.push({...x,sign:1}));bm.exp.forEach(x=>ev.push({...x,sign:-1}))});
- I.jobs.filter(j=>j.startDate>=TODAY&&j.startDate<=LIM).forEach(j=>ev.push({src:'job',label:`Mission ${j.employer}`,detail:`${j.hours} h · ${j.status==='confirmed'||j.status==='paid'?'confirmée':'prévisionnelle'}`,date:j.startDate,amount:Number(j.gross||0),sign:0}));
- const list=ev.filter(x=>x.date>=TODAY&&x.date<=LIM).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,9);
- $('#upcoming').innerHTML=list.length?list.map(x=>`<div class="li"><div class="date"><b>${pDate(x.date).getDate()}</b><span>${mShort(x.date.slice(0,7))}</span></div><div class="txt"><b>${esc(x.label)}</b><span>${srcPill(x.src)} ${esc(x.detail||'')}</span></div><div class="amt ${x.sign>0?'plus':x.sign<0?'minus':''}">${x.sign>0?'+':x.sign<0?'−':''}${euro0(x.amount)}${x.sign===0?' <span class="faint small">brut</span>':''}</div></div>`).join(''):'<div class="empty">Rien de prévu dans les 45 prochains jours.</div>';
- $('#homeBudgetSub').textContent=cap(mLabel(cursor));
- $('#homeBudget').innerHTML=`<div class="grid" style="gap:12px">${kpiRow('Revenus',b.ti,'var(--rev)',ICONS.up)}${kpiRow('Dépenses',b.te,'var(--dep)',ICONS.down)}${kpiRow('Reste disponible',b.rest,'var(--gold)',ICONS.wallet)}</div><div class="note">Les salaires apparaissent au mois où ils sont versés : les activités de ${mLabel(addM(cursor,-S.settings.salaryOffset),{month:'long'})} sont comptées en ${mLabel(cursor,{month:'long'})}.</div>`}
+let planWeek=null;
+function planData(from,to){const days={};let d=from;while(d<=to){days[d]={jobs:[],ev:[],kids:{}};d=PL.addDays(d,1)}
+ const cols=I.employerColors||{};const colorOf=e=>{const k=(e||'').trim().toLowerCase();const f=Object.entries(cols).find(([x])=>x.trim().toLowerCase()===k);return f?f[1]:'#2dd4bf'};
+ I.jobs.forEach(j=>{if(!j.startDate)return;const end=j.endDate||j.startDate;if(end<from||j.startDate>to)return;const nd=Math.round((pDate(end)-pDate(j.startDate))/864e5)+1;let x=j.startDate<from?from:j.startDate;while(x<=end&&x<=to){days[x].jobs.push({e:j.employer||'Mission',c:colorOf(j.employer),st:j.startTime||'',et:j.endTime||'',h:Math.round(Number(j.hours||0)/nd*2)/2,loc:j.location||''});x=PL.addDays(x,1)}});
+ S.agenda.events.forEach(e=>{if(S.agenda.linked[e.uid])return;if(I.jobs.some(j=>j.calendarUid===e.uid))return;let x=e.startDate<from?from:e.startDate;while(x<=e.endDate&&x<=to){days[x].ev.push({t:e.title,tm:x===e.startDate?e.startTime||'':''});x=PL.addDays(x,1)}});
+ Object.keys(days).forEach(ds=>{const wd=pDate(ds).getDay();if(wd===0||wd===6)return;S.resa.children.forEach(c=>{const k={vac:isVacDay(ds)};['matin','cantine','soir','centre'].forEach(s=>{k[s]=slotAllowed(ds,s)?stOf(S.resa.days[`${c.id}|${ds}`]?.[s]):-1});days[ds].kids[c.id]=k})});
+ const rn=renewal();return{v:1,owner:S.settings.name||'',children:S.resa.children.map(c=>({id:c.id,name:c.name})),counter:{hours:rn.hours,req:rn.req},days,notes:S.notes.map(n=>({id:n.id,text:n.text,date:n.date||'',tag:n.tag||'',done:!!n.done,doneAt:n.doneAt||''}))}}
+function renderHome(){if(!planWeek)planWeek=PL.monday(new Date());const data=planData(planWeek,PL.addDays(planWeek,6));
+ $('#planWeekLbl').textContent=PL.weekLabel(planWeek);$('#plLegend').innerHTML=PL.legend;
+ $('#planGrid').innerHTML=PL.render(data,planWeek,{today:TODAY});
+ $('#notesList').innerHTML=PL.notesList(S.notes,planWeek,{editable:true});
+ const sb=$('#shareBtn');sb.classList.toggle('on',!!S.share?.fileId);sb.textContent=S.share?.fileId?'👥 Partagé avec ta compagne':'👥 Partager avec ma compagne';
+ renderAgenda()}
+$('#plPrev').onclick=()=>{planWeek=PL.addDays(planWeek,-7);renderHome()};
+$('#plNext').onclick=()=>{planWeek=PL.addDays(planWeek,7);renderHome()};
+$('#plToday').onclick=()=>{planWeek=PL.monday(new Date());renderHome()};
+$('#noteForm').onsubmit=e=>{e.preventDefault();const text=$('#nText').value.trim();if(!text)return;S.notes.push({id:uid(),text,date:$('#nDate').value,tag:$('#nTag').value,done:false});$('#nText').value='';$('#nDate').value='';$('#nTag').value='';save('Info ajoutée')};
+document.addEventListener('click',e=>{const tg=e.target.closest('[data-ntog]');if(tg){const n=S.notes.find(x=>x.id===tg.dataset.ntog);if(n){n.done=!n.done;n.doneAt=n.done?TODAY:'';save('')}}const dl=e.target.closest('[data-ndel]');if(dl){S.notes=S.notes.filter(x=>x.id!==dl.dataset.ndel);save('Info supprimée')}});
 function card(id,name,hint,body){const a=APPS.find(x=>x.id===id);return`<div class="card app-card" data-go="${id}"><div class="row"><span class="app-ico">${ICONS[a.ico]}</span><div><div class="name">${name}</div><div class="hint">${hint}</div></div></div>${body}</div>`}
 function kpiRow(l,v,c,ico){return`<div class="kpi"><div class="dot" style="background:${c}22;color:${c}">${ico}</div><div><label>${l}</label><div class="big" style="font-size:1.35rem">${euro(v)}</div></div></div>`}
 function srcPill(s){return{inter:'<span class="pill p-inter">Intermittence</span>',resa:'<span class="pill p-resa">Réservations</span>',tax:'<span class="pill p-tax">Impôts</span>',man:'<span class="pill p-man">Budget</span>',job:'<span class="pill p-inter">Mission</span>'}[s]||''}
@@ -651,7 +731,7 @@ $('#resetSpace').onclick=()=>{if(confirm('Effacer le budget, les réservations e
 
 /* ---------- Google : connexion, synchro Drive, Agenda ---------- */
 (()=>{
- const SCOPES='https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/calendar.events';
+ const SCOPES='https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/calendar.events';
  const META_KEY='mon-espace-sync',TOK_KEY='mon-espace-gtoken',CID_KEY='mon-espace-client-id';
  const meta=()=>store(META_KEY)||{};const setMeta=m=>{try{localStorage.setItem(META_KEY,JSON.stringify({...meta(),...m}))}catch{}};
  const clientId=()=>(localStorage.getItem(CID_KEY)||window.ME_CONFIG?.clientId||'').trim();
@@ -667,9 +747,9 @@ $('#resetSpace').onclick=()=>{if(confirm('Effacer le budget, les réservations e
  async function pull(){const id=await findFile();if(!id)return null;const r=await api(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);if(!r.ok)return null;return r.json()}
  async function push(){chip('busy','Synchronisation…');const body=JSON.stringify(snapshot());const id=await findFile();if(id)await api(`https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`,{method:'PATCH',headers:{'Content-Type':'application/json'},body});else{const b='mebound'+Date.now();const multi=`--${b}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify({name:'mon-espace.json',parents:['appDataFolder']})}\r\n--${b}\r\nContent-Type: application/json\r\n\r\n${body}\r\n--${b}--`;const r=await api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+b},body:multi});fileId=(await r.json()).id}setMeta({syncedAt:Date.now(),remoteAt:meta().updatedAt});status()}
  function apply(d){applying=true;try{if(d.space)localStorage.setItem(SPACE_KEY,JSON.stringify(d.space));if(d.intermittence)localStorage.setItem(INTER_KEY,JSON.stringify(d.intermittence));setMeta({updatedAt:d.updatedAt,remoteAt:d.updatedAt,syncedAt:Date.now(),hash:hash()});S=loadSpace();if(!Array.isArray(S.budget.rows))S.budget.rows=DEFAULT_ROWS();S.budget.carry=S.budget.carry||{};I=inter();resetFrame();renderAll()}finally{setTimeout(()=>applying=false,800)}}
- async function sync(force){if(!token)return;try{chip('busy','Synchronisation…');const remote=await pull();lastPull=Date.now();const m=meta();if(remote&&(!m.syncedAt||(remote.updatedAt||0)>(m.updatedAt||0)&&(remote.updatedAt||0)!==(m.remoteAt||0))){apply(remote);toast('Données mises à jour depuis ton autre appareil')}else if(!remote||(m.updatedAt||0)>(m.remoteAt||0)||force){await push()}else{setMeta({syncedAt:Date.now()});status()}await pullCalendar(true);schedulePushJobs()}catch(e){console.warn(e);status();if(force)toast('Synchronisation impossible : '+e.message)}}
+ async function sync(force){if(!token)return;try{chip('busy','Synchronisation…');const remote=await pull();lastPull=Date.now();const m=meta();if(remote&&(!m.syncedAt||(remote.updatedAt||0)>(m.updatedAt||0)&&(remote.updatedAt||0)!==(m.remoteAt||0))){apply(remote);toast('Données mises à jour depuis ton autre appareil')}else if(!remote||(m.updatedAt||0)>(m.remoteAt||0)||force){await push()}else{setMeta({syncedAt:Date.now()});status()}await pullCalendar(true);schedulePushJobs();scheduleShare()}catch(e){console.warn(e);status();if(force)toast('Synchronisation impossible : '+e.message)}}
  const hash=()=>{const s=(localStorage.getItem(SPACE_KEY)||'')+'|'+(localStorage.getItem(INTER_KEY)||'');let h=5381;for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))|0;return s.length+':'+h};
- G.dirty=()=>{if(applying)return;const h=hash();if(h===meta().hash)return;setMeta({updatedAt:Date.now(),hash:h});if(!token)return;clearTimeout(pushT);pushT=setTimeout(()=>push().catch(e=>{console.warn(e);status()}),2500);schedulePushJobs()};
+ G.dirty=()=>{if(applying)return;const h=hash();if(h===meta().hash)return;setMeta({updatedAt:Date.now(),hash:h});if(!token)return;clearTimeout(pushT);pushT=setTimeout(()=>push().catch(e=>{console.warn(e);status()}),2500);schedulePushJobs();scheduleShare()};
  /* Agenda : lecture */
  async function pullCalendar(quiet){if(!token)return;const from=new Date(today);from.setMonth(from.getMonth()-4);const to=new Date(today);to.setMonth(to.getMonth()+12);let url=`https://www.googleapis.com/calendar/v3/calendars/primary/events?singleEvents=true&orderBy=startTime&maxResults=2500&timeMin=${from.toISOString()}&timeMax=${to.toISOString()}`;const r=await api(url);const j=await r.json();const evs=(j.items||[]).filter(e=>e.status!=='cancelled'&&!e.extendedProperties?.private?.meJob&&!e.extendedProperties?.private?.meReminder&&!e.recurringEventId).map(e=>{const all=!!e.start.date;const sd=all?e.start.date:iso(new Date(e.start.dateTime));let ed=all?e.end.date:iso(new Date(e.end.dateTime));if(all){const d=pDate(ed);d.setDate(d.getDate()-1);ed=iso(d)}if(ed<sd)ed=sd;const st=all?'':new Date(e.start.dateTime).toTimeString().slice(0,5),et=all?'':new Date(e.end.dateTime).toTimeString().slice(0,5);const days=Math.round((pDate(ed)-pDate(sd))/864e5)+1;let hours=days*8;if(!all&&days===1){const h=(new Date(e.end.dateTime)-new Date(e.start.dateTime))/36e5;if(h>0)hours=Math.round(h*2)/2}return{uid:'g:'+e.id,title:e.summary||'(Sans titre)',location:e.location||'',desc:(e.description||'').replace(/<[^>]+>/g,' ').slice(0,200),startDate:sd,startTime:st,endDate:ed,endTime:et,allDay:all,hours,source:'google'}});
   const others=S.agenda.events.filter(x=>x.source!=='google');const before=JSON.stringify(S.agenda.events.filter(x=>x.source==='google'));if(before!==JSON.stringify(evs)){S.agenda.events=[...others,...evs];S.agenda.imported=TODAY;storeSet(SPACE_KEY,S);if(view==='home')renderHome()}if(!quiet)toast(`${evs.length} événement(s) lus dans ton agenda`)}
@@ -686,6 +766,22 @@ $('#resetSpace').onclick=()=>{if(confirm('Effacer le budget, les réservations e
   await mk('m15',next(0,15),'RRULE:FREQ=MONTHLY;BYMONTHDAY=15','🏕️ Réserver le centre aéré',`Réserve le mois prochain : ${S.resa.portals.loisirs}\nPuis marque les jours « confirmés » dans Mon Espace › Réservations.`);
   save('Rappels créés dans Google Agenda')}
  async function connect(){try{const id=$('#gClientId')?.value.trim();if(id&&id!==clientId()){localStorage.setItem(CID_KEY,id);tokenClient=null}await login(meta().connected?'':'consent');await sync(true);toast('Connecté à Google')}catch(e){toast('Connexion Google impossible : '+(e.message||e.type||'refusée'));status()}}
+
+ /* Partage du planning (fichier chiffré dans ton Drive, lisible par lien) */
+ const b64e=u8=>{let s='';for(let i=0;i<u8.length;i+=8192)s+=String.fromCharCode.apply(null,u8.subarray(i,i+8192));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+ const b64d=s=>Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')+'==='.slice((s.length+3)%4)),c=>c.charCodeAt(0));
+ async function encrypt(k,text){const key=await crypto.subtle.importKey('raw',b64d(k),'AES-GCM',false,['encrypt']);const iv=crypto.getRandomValues(new Uint8Array(12));const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(text)));return JSON.stringify({v:1,iv:b64e(iv),ct:b64e(ct)})}
+ const shash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))|0;return s.length+':'+h};
+ let shareT=null;
+ function scheduleShare(){if(!token||!S.share?.fileId)return;clearTimeout(shareT);shareT=setTimeout(()=>sharePush(false).catch(e=>console.warn(e)),5000)}
+ async function sharePush(force){if(!token||!S.share?.fileId)return;const m0=PL.monday(new Date());const data=planData(PL.addDays(m0,-7),PL.addDays(m0,62));const plain=JSON.stringify(data);const h=shash(plain);if(!force&&h===meta().shareHash)return;data.updated=Date.now();const body=await encrypt(S.share.key,JSON.stringify(data));const r=await api(`https://www.googleapis.com/upload/drive/v3/files/${S.share.fileId}?uploadType=media`,{method:'PATCH',headers:{'Content-Type':'application/json'},body});if(r.status===404){toast('Fichier de partage introuvable : réactive le partage');return}setMeta({shareHash:h,shareAt:Date.now()});if($('#shareDlg').open)openShare()}
+ function shareLink(){return new URL('planning.html',location.href).href.split('#')[0]+`#f=${S.share.fileId}&k=${S.share.key}`}
+ function openShare(){const b=$('#shareBody');if(S.share?.fileId){const at=meta().shareAt;b.innerHTML=`<p>Envoie ce lien à ta compagne (SMS, WhatsApp…). Elle l’ouvre dans <b>Chrome</b>, puis <b>⋮ › Ajouter à l’écran d’accueil</b> : elle a son icône <b>Planning</b>, qui s’ouvre directement sur ce planning, en lecture seule.</p><input class="share-link" readonly value="${esc(shareLink())}" onclick="this.select()"><div class="row-btns" style="margin:12px 0"><button class="btn primary" id="shCopy">Copier le lien</button>${navigator.share?'<button class="btn" id="shSend">Envoyer…</button>':''}<button class="btn" id="shNow">Mettre à jour maintenant</button></div><div class="note">Elle voit uniquement le planning et les infos de la semaine : pas le budget, ni les impôts, ni les salaires, ni ton compte Google. Le contenu est chiffré : sans ce lien, le fichier est illisible.<br>Dernière mise à jour : <b>${at?new Date(at).toLocaleString('fr-FR',{weekday:'short',hour:'2-digit',minute:'2-digit'}):'—'}</b>${token?'':' · <span style="color:var(--gold)">connecte-toi à Google pour mettre à jour</span>'}</div><div class="row-btns" style="margin-top:12px"><button class="btn danger" id="shStop">Arrêter le partage</button></div>`}
+  else b.innerHTML=`<p>Ta compagne pourra voir ce planning sur son téléphone avec sa propre icône, sans compte et sans rien comprendre à Google Agenda : missions, réservations des enfants, rendez-vous et infos de la semaine. Rien sur l’argent.</p><p>Le planning est enregistré, chiffré, dans ton Google Drive et se met à jour tout seul quand tu modifies quelque chose.</p>${window.ME_CONFIG?.apiKey?'':'<div class="note warn">Il manque encore la « clé API » Google dans config.js : demande à Claude de te guider (2 minutes).</div>'}<div class="row-btns" style="margin-top:12px"><button class="btn primary" id="shStart">Activer le partage</button></div>`;
+  if(!$('#shareDlg').open)$('#shareDlg').showModal()}
+ async function shareCreate(){if(!window.ME_CONFIG?.apiKey){toast('Clé API Google manquante dans config.js');return}if(!clientId()){toast('Connecte d’abord Google dans Paramètres');return}try{await login('consent');const key=b64e(crypto.getRandomValues(new Uint8Array(32)));const bd='mesh'+Date.now();const multi=`--${bd}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify({name:'Mon Espace - planning partagé (chiffré).json',mimeType:'application/json'})}\r\n--${bd}\r\nContent-Type: application/json\r\n\r\n{}\r\n--${bd}--`;const r=await api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+bd},body:multi});const id=(await r.json()).id;if(!id)throw new Error('création du fichier refusée');await api(`https://www.googleapis.com/drive/v3/files/${id}/permissions`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'reader',type:'anyone'})});S.share={fileId:id,key};setMeta({shareHash:''});save('Partage activé');await sharePush(true);openShare()}catch(e){toast('Partage impossible : '+(e.message||e.type||e))}}
+ async function shareStop(){if(!confirm('Arrêter le partage ? Le lien de ta compagne ne fonctionnera plus.'))return;try{if(token)await api(`https://www.googleapis.com/drive/v3/files/${S.share.fileId}`,{method:'DELETE'})}catch(e){}S.share=null;setMeta({shareHash:'',shareAt:0});save('Partage arrêté');$('#shareDlg').close()}
+ document.addEventListener('click',e=>{const id=e.target.closest('button')?.id;if(id==='shareBtn')openShare();else if(id==='shStart')shareCreate();else if(id==='shStop')shareStop();else if(id==='shNow'){if(!token){connect();return}sharePush(true).then(()=>toast('Planning partagé mis à jour')).catch(er=>toast('Erreur : '+er.message))}else if(id==='shCopy'){navigator.clipboard?.writeText(shareLink()).then(()=>toast('Lien copié'),()=>{$('.share-link').select();document.execCommand('copy');toast('Lien copié')})}else if(id==='shSend'){navigator.share({title:'Planning',text:'Le planning de la semaine : ouvre ce lien puis ajoute-le à ton écran d’accueil',url:shareLink()}).catch(()=>{})}});
  document.addEventListener('click',e=>{const id=e.target.closest('button')?.id;if(id==='gConnect'||(id==='gchip'&&!token)){connect()}else if(id==='gchip'){go('settings')}else if(id==='gSyncNow'){sync(true)}else if(id==='gLogout'){if(token&&window.google?.accounts?.oauth2)google.accounts.oauth2.revoke(token.v,()=>{});token=null;localStorage.removeItem(TOK_KEY);setMeta({connected:false});status();toast('Déconnecté')}else if(id==='gCalPull'){if(!token){connect();return}pullCalendar(false).catch(er=>toast('Agenda : '+er.message))}else if(id==='gReminders'){createReminders().catch(er=>toast('Rappels : '+er.message))}});
  document.addEventListener('change',e=>{if(e.target.id==='gAutoPush'){S.agenda.autoPush=e.target.checked;save(e.target.checked?'Envoi automatique activé':'Envoi automatique désactivé');schedulePushJobs()}});
  G.renderSettings=()=>{const c=$('#gClientId');if(c)c.value=clientId();const a=$('#gAutoPush');if(a)a.checked=!!S.agenda.autoPush;status()};
