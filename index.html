@@ -716,6 +716,12 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-delmode]')
  else if(mode==='from'){if(r.start&&r.start>=ym){S.budget.rows=S.budget.rows.filter(x=>x.id!==r.id)}else{r.end=addM(ym,-1);Object.keys(r.vals||{}).forEach(m=>{if(m>=ym)delete r.vals[m]})}unmark(ym);save('Supprimé définitivement à partir de '+mLabel(ym,{month:'long'}))}
  else{if(!confirm(`Effacer « ${r.label} » de tous les mois ?`))return;S.budget.rows=S.budget.rows.filter(x=>x.id!==r.id);save('Ligne effacée')}
  delCtx=null;$('#delDlg').close()});
+function monthTotals(ym){const T=trackOf(ym);const b=budgetMonth(ym);let recv=0,paid=0;
+ b.inc.forEach(x=>{const k=x.src==='man'?'r:'+x.id:'a:'+x.label;if(T.recv[k])recv+=Number(T.recv[k].amount)});
+ b.exp.forEach(x=>{let k;if(x.src==='man'){const r=S.budget.rows.find(y=>y.id===x.id);if(!r||r.sec==='courantes')return;k='r:'+x.id}else k=x.src==='resa'?'a:resa':'t:'+x.id;if(T.paid[k])paid+=x.amount});
+ const spent=T.spends.reduce((a,s)=>a+s.amount,0);return{recv,paid,spent}}
+function bankNow(ym,depth=0){const T=trackOf(ym);const tot=monthTotals(ym);if(T.bank)return T.bank.amount+(tot.recv-T.bank.recv)-(tot.paid-T.bank.paid)-(tot.spent-T.bank.spent);if(depth<2){const pm=addM(ym,-1);if(S.budget.track?.[pm]){const prev=bankNow(pm,depth+1);if(prev!=null)return prev+tot.recv-tot.paid-tot.spent}}return null}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-bankset]');if(!b)return;const ym=b.dataset.bankset;const cur=bankNow(ym);const v=prompt('Ton solde bancaire réel aujourd’hui (€), par exemple -291,94 :',cur!=null?String(Math.round(cur*100)/100).replace('.',','):'');if(v==null)return;const n=Number(String(v).replace(/[\s  €]/g,'').replace(',','.').replace('−','-'));if(!isFinite(n)){alert('Montant non reconnu.');return}const tot=monthTotals(ym);trackOf(ym).bank={amount:Math.round(n*100)/100,date:TODAY,...tot};save('Solde enregistré')});
 let budStart=null;
 const PAL=['#fde047','#fb923c','#fca5a5','#c084fc','#2dd4bf','#4ade80','#60a5fa','#f472b6','#a3e635','#38bdf8','#fbbf24','#94a3b8'];
 function grpOf(r){if(r.grp)return r.grp;if(r.sec==='fixes'&&/abonnement/i.test(r.note||''))return 'variables';return{revenus:'paye',fixes:'fixes',credits:'credits',courantes:'variables',ponctuelles:'ponctuel'}[r.sec]}
@@ -753,9 +759,10 @@ function renderBudget2_(){if(!budStart)budStart=ymOf(today);if(cursor<budStart||
  const recv=G.paye.reduce((a,x)=>a+(T.recv[x.k]?Number(T.recv[x.k].amount):0),0);
  const spentAll=T.spends.reduce((a,s)=>a+s.amount,0);const envRemain=Object.values(E.out).reduce((a,s)=>a+Math.max(0,s.remain),0);
  const weekAllow=Object.values(E.out).reduce((a,s)=>a+s.weekly,0),weekSpent=Object.values(E.out).reduce((a,s)=>a+s.wk,0);
- const carry=carryFor(addM(ym,-1));const dispo=(carry||0)+recv-paid-spentAll;
+ const carry=carryFor(addM(ym,-1));const bk=bankNow(ym);const dispo=bk!=null?bk:(carry||0)+recv-paid-spentAll;
  const envs=S.budget.rows.filter(r=>r.sec==='courantes');const recent=[...T.spends].sort((a,c)=>c.date.localeCompare(a.date)).slice(0,6);
- $('#budSide').innerHTML=`<div class="sk hl"><label>Sur le compte maintenant</label><b>${carry==null&&!recv&&!paid&&!spentAll?'—':euro(dispo)}</b><small>${carry!=null?`Report ${euro0(carry)} + `:''}reçu ${euro0(recv)} − payé ${euro0(paid+spentAll)}</small>${carry==null?`<button class="lnk" data-carry="${addM(ym,-1)}">Indiquer mon solde de fin ${mLabel(addM(ym,-1),{month:'long'})}</button>`:''}</div>
+ const B=T.bank;const bankTxt=B?`Solde indiqué le ${fDate(B.date,{day:'numeric',month:'short'})} : ${euro(B.amount)}${Math.abs(dispo-B.amount)>0.004?` · depuis ${dispo-B.amount>=0?'+':'−'}${euro(Math.abs(dispo-B.amount))}`:''}`:bk!=null?'Suite du solde du mois dernier':`Estimation : ${carry!=null?`report ${euro0(carry)} + `:''}reçu ${euro0(recv)} − payé ${euro0(paid+spentAll)}`;
+ $('#budSide').innerHTML=`<div class="sk hl"><label>Sur le compte maintenant</label><b style="color:${dispo<0?'#fecaca':'inherit'}">${euro(dispo)}</b><small>${bankTxt}</small><button class="lnk" data-bankset="${ym}">${B?'Mettre à jour mon solde':'Indiquer mon solde bancaire réel'}</button></div>
  <div class="sk"><label>${E.cur?'Reste cette semaine':'Budget par semaine'}</label><b style="color:${weekAllow-weekSpent<0?'#fda4af':'inherit'}">${euro(E.cur?weekAllow-weekSpent:weekAllow)}</b><small>Courses, gazole… : budget ${euro0(weekAllow)}${E.cur?` · dépensé ${euro0(weekSpent)}`:''}</small></div>
  <div class="sk"><label>Reste à payer ce mois</label><b>${euro(unpaid+envRemain)}</b><small>${euro0(unpaid)} pas encore cochés · ${euro0(envRemain)} d’enveloppes</small></div>
  <div class="sk full"><label>J’ai dépensé</label><form class="qk" id="qkForm"><input id="qkAmt" type="text" inputmode="decimal" placeholder="Montant €" required><select id="qkRow">${envs.map(r=>`<option value="${r.id}">${esc(r.label)}</option>`).join('')}<option value="">Autre</option></select><button class="btn primary">Enregistrer</button></form>
