@@ -823,9 +823,13 @@ function bankMatch(){const B=bankCfg();const used=bankUsed();let n=0;const month
   b.exp.forEach(x=>{let k,r=null;if(x.src==='man'){r=S.budget.rows.find(y=>y.id===x.id);if(!r||isEnv(r))return;k='r:'+x.id}else k=x.src==='resa'?'a:resa':'t:'+x.id;if(T.paid[k]||!x.amount)return;const tol=Math.max(1,x.amount*.03);const ws=words(x.label);
    const cand=txs.filter(t=>!used.has(t.id)&&t.amount<0&&Math.abs(-t.amount-x.amount)<=tol);const t=cand.find(t=>ws.some(w=>bankNorm(t.label).includes(w))||(r&&B.rules[bankToken(t.label)]===r.id))||cand.find(t=>Math.abs(-t.amount-x.amount)<0.01);
    if(t){T.paid[k]={amount:-t.amount,date:t.date,tx:t.id};take(t)}});
+  // Factures déjà cochées à la main : on y rattache l'opération bancaire correspondante
+  b.exp.forEach(x=>{let k;if(x.src==='man'){const r=S.budget.rows.find(y=>y.id===x.id);if(!r||isEnv(r))return;k='r:'+x.id}else k=x.src==='resa'?'a:resa':'t:'+x.id;const p=T.paid[k];if(!p||p.tx)return;const amt=Number(p.amount)||x.amount;const tol=Math.max(1,amt*.03);const t=txs.find(t=>!used.has(t.id)&&t.amount<0&&Math.abs(-t.amount-amt)<=tol);if(t){p.tx=t.id;take(t)}});
+  b.inc.forEach(x=>{const k=x.src==='man'?'r:'+x.id:'a:'+x.label;const p=T.recv[k];if(!p||p.tx)return;const t=txs.find(t=>!used.has(t.id)&&t.amount>0&&Math.abs(t.amount-Number(p.amount))<=Math.max(1,Number(p.amount)*.03));if(t){p.tx=t.id;take(t)}});
   // Enveloppes (courses, gazole…) : règles apprises puis mots-clés des enseignes
   const envs=S.budget.rows.filter(isEnv);txs.filter(t=>!used.has(t.id)&&t.amount<0).forEach(t=>{const tok=bankToken(t.label);let row=B.rules[tok];if(row==='ignore'){(T.ignoredTx=T.ignoredTx||[]).push(t.id);used.add(t.id);return}
    if(!row||!envs.some(e=>e.id===row)){const nl=' '+bankNorm(t.label)+' ';const hit=ENV_KEYS.find(([lab,re])=>re.test(nl));if(hit){const e=envs.find(e=>hit[0].test(e.label));row=e?.id}}
+   const dup=T.spends.find(s=>!s.tx&&Math.abs(s.amount-(-t.amount))<0.01&&Math.abs(pDate(s.date)-pDate(t.date))<=4*864e5);if(dup){dup.tx=t.id;take(t);return}
    if(row&&envs.some(e=>e.id===row)){T.spends.push({id:'bk-'+t.id,row,amount:-t.amount,date:t.date,note:bankPretty(t.label).slice(0,40),tx:t.id});take(t)}})});
  return n}
 function bankMarkJobsPaid(emp,ym){try{const raw=store(INTER_KEY);if(!raw?.jobs)return;let ch=false;const e=bankNorm(emp);raw.jobs.forEach(j=>{if((j.startDate||'').slice(0,7)===ym&&bankNorm(j.employer).includes(e.split(' ')[0])&&j.status!=='paid'){j.status='paid';ch=true}});if(ch){localStorage.setItem(INTER_KEY,JSON.stringify(raw));I=inter();if(typeof resetFrame==='function')resetFrame()}}catch{}}
