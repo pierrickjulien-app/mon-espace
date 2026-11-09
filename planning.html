@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08111f">
+<title>Planning</title>
+<link rel="manifest" href="manifest-planning.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Planning">
+<script src="config.js"></script>
+<style>
+:root{--ink:#e8eef6;--muted:#91a2b7;--faint:#5f7189;--panel:#101d2d;--panel2:#15263a;--line:#263a50;--teal:#2dd4bf;--gold:#fbbf24;--red:#fb7185;--violet:#a78bfa}
+*{box-sizing:border-box}html,body{min-height:100%}
+body{margin:0;background:#08111f linear-gradient(145deg,#07101d,#0d1b2c 65%,#10283a) fixed;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:14px 18px;background:#08111ee6;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff0d}
+header img{width:40px;height:40px;border-radius:12px}header h1{margin:0;font-size:1.1rem}header p{margin:2px 0 0;color:var(--muted);font-size:.76rem}
+header .r{margin-left:auto}
+.ref{border:1px solid var(--line);background:var(--panel);border-radius:11px;padding:7px 11px;font-size:.78rem;font-weight:700;color:var(--muted);cursor:pointer}
+main{padding:16px 18px 40px;max-width:1400px;margin:0 auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px}
+.banner{border-radius:12px;padding:10px 12px;font-size:.82rem;margin-bottom:14px;line-height:1.5}
+.banner.warn{background:#fbbf2414;border:1px solid #fbbf2455;color:#fcd34d}
+.banner.err{background:#fb718514;border:1px solid #fb718555;color:#fda4af}
+.welcome{text-align:center;padding:50px 20px;color:var(--muted);line-height:1.6}.welcome b{color:var(--ink)}
+.pl-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--muted)}.pl-legend span{display:inline-flex;align-items:center;gap:5px}.pl-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.pl-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.pl-day{background:#0b1827;border:1px solid var(--line);border-radius:14px;padding:10px;min-height:260px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pl-day.today{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal) inset}
+.pl-day.we{opacity:.8}
+.pl-dh{display:flex;justify-content:space-between;align-items:baseline}.pl-dh b{font-size:1.25rem}.pl-dh span{color:var(--muted);font-size:.7rem;text-transform:uppercase;font-weight:700}
+.pl-day.today .pl-dh span{color:var(--teal)}
+.pl-body{display:flex;flex-direction:column;gap:7px;min-width:0;flex:1}
+.pl-job{border-radius:10px;padding:8px 9px;background:color-mix(in srgb,var(--c) 16%,#0b1827);border-left:3px solid var(--c)}
+.pl-job b{display:block;font-size:.82rem;overflow-wrap:anywhere}.pl-job small{color:var(--muted);font-size:.7rem;display:block;line-height:1.35}
+.pl-free{color:var(--faint);font-size:.74rem;padding:6px 2px;border:1px dashed #ffffff14;border-radius:10px;text-align:center}
+.pl-evt{font-size:.72rem;background:#fbbf2414;border:1px solid #fbbf2433;border-radius:8px;padding:5px 7px;overflow-wrap:anywhere}.pl-evt span{color:var(--gold);font-weight:700}
+.pl-kid{font-size:.68rem;color:var(--muted);font-weight:700;margin-top:2px}
+.pl-slots{display:flex;flex-wrap:wrap;gap:4px}
+.pl-s{font-size:.66rem;font-weight:750;padding:3px 6px;border-radius:6px;border:1px solid}
+.pl-s.c{background:#2dd4bf1f;border-color:#2dd4bf88;color:#5eead4}
+.pl-s.p{background:#fbbf2414;border-color:#fbbf2488;color:#fcd34d}
+.pl-s.n{background:transparent;border-color:#ffffff14;color:var(--faint);text-decoration:line-through}
+.pl-s.ca{background:#a78bfa22;border-color:#a78bfa88;color:#c4b5fd}
+.pl-warn{font-size:.68rem;line-height:1.35;color:#fda4af;background:#fb718514;border:1px solid #fb718544;border-radius:8px;padding:6px 7px}
+.pl-note{font-size:.7rem;color:var(--muted);border-top:1px solid #ffffff0b;padding-top:6px;margin-top:auto}
+.pl-sum{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #ffffff0b;font-size:.8rem;color:var(--muted)}.pl-sum b{color:var(--ink)}
+.pl-info{display:flex;align-items:flex-start;gap:10px;padding:10px 4px;border-bottom:1px solid #ffffff0b}.pl-info:last-child{border-bottom:0}
+.pl-cb{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);background:transparent;flex:none;margin-top:1px;display:grid;place-items:center;font-size:.7rem;color:#04211d;font-weight:900;padding:0;cursor:pointer}.pl-cb.ok{background:var(--teal);border-color:var(--teal)}
+.pl-t{flex:1;min-width:0}.pl-t b{font-weight:600;font-size:.88rem;overflow-wrap:anywhere}.pl-t small{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}
+.pl-info.done .pl-t b{color:var(--faint);text-decoration:line-through}
+.pl-tag{font-size:.66rem;font-weight:800;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.pl-del{border:0;background:#ffffff0a;color:var(--muted);width:26px;height:26px;border-radius:8px;cursor:pointer}
+.pl-empty{color:var(--muted);font-size:.85rem;padding:12px 4px;line-height:1.5}
+.pl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}.pl-head h3{margin:0;font-size:1.05rem}.pl-head p{margin:3px 0 0;color:var(--muted);font-size:.8rem}
+.pl-nav{display:flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px}.pl-nav button{border:0;background:transparent;width:32px;height:32px;border-radius:9px;color:var(--muted);font-size:1.1rem;cursor:pointer}.pl-nav span{min-width:170px;text-align:center;font-weight:700;font-size:.88rem}
+.pl-nav .tdy{width:auto;padding:0 10px;font-size:.75rem;font-weight:700}
+@media(max-width:760px){.pl-week{grid-template-columns:1fr}.pl-day{min-height:0;flex-direction:row;align-items:flex-start;gap:12px}.pl-dh{width:52px;flex:none;flex-direction:column;align-items:flex-start}.pl-day.we.empty{display:none}.pl-nav span{min-width:0;flex:1;font-size:.82rem}.pl-nav{width:100%}}
+
+@media(max-width:760px){header{padding:12px 14px}main{padding:12px 10px 40px}.card{padding:14px}}
+</style>
+</head>
+<body>
+<header><img src="icon-192.png" alt=""><div><h1 id="ttl">Planning</h1><p id="upd">Chargement…</p></div><button class="ref r" id="refresh">↻ Actualiser</button></header>
+<main id="app"><div class="welcome">Chargement du planning…</div></main>
+<script>
+/* ---------- Planning : rendu partagé (appli + vue compagne) ---------- */
+const PL=(()=>{
+ const pad=n=>String(n).padStart(2,'0');
+ const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+ const pD=s=>new Date(s+'T12:00:00');
+ const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const monday=d=>{const x=new Date(d);x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x};
+ const addDays=(s,n)=>{const d=pD(s);d.setDate(d.getDate()+n);return iso(d)};
+ const hh=t=>t?t.replace(':00',' h').replace(/^0/,'').replace(':',' h '):'';
+ const SL={matin:'Matin',cantine:'Cantine',soir:'Soir',centre:'Centre aéré'};
+ const TAGS={Important:['#fb718522','#fda4af'],Enfants:['#a78bfa22','#c4b5fd'],Travail:['#2dd4bf1f','#5eead4'],Perso:['#ffffff12','#91a2b7'],Autre:['#60a5fa1f','#93c5fd']};
+ function weekLabel(ws){const we=addDays(ws,6);const o={day:'numeric',month:'short'};return `Sem. du ${pD(ws).toLocaleDateString('fr-FR',{day:'numeric'})} au ${pD(we).toLocaleDateString('fr-FR',o).replace('.','')}`}
+ function alerts(day,children){const out=[];const wd=pD(day.date).getDay();if(!day.jobs.length||wd===0||wd===6)return out;
+  const late=day.jobs.some(j=>!j.et||j.et>='17:30'||j.multi),early=day.jobs.some(j=>j.st&&j.st<='08:30');
+  children.forEach(c=>{const k=day.kids?.[c.id];if(!k)return;const nm=children.length>1?` (${c.name})`:'';
+   if(k.centre>=0&&k.centre!==2)out.push(`Tu travailles et le centre aéré n’est pas confirmé${nm}`);
+   if(late&&k.soir>=0&&k.soir!==2)out.push(`Tu finis ${day.jobs[0].et?'à '+hh(day.jobs[0].et):'tard'} et le péri du soir n’est pas confirmé${nm}`);
+   if(early&&k.matin>=0&&k.matin!==2)out.push(`Tu commences tôt et le péri du matin n’est pas confirmé${nm}`)});return out}
+ function render(data,ws,opt={}){const today=opt.today||iso(new Date());let html='<div class="pl-week">';let nJobs=0,nH=0,nRes=0,nPend=0;
+  for(let i=0;i<7;i++){const d=addDays(ws,i);const day=data.days[d]||{jobs:[],ev:[],kids:{}};day.date=d;day.jobs=day.jobs||[];day.ev=day.ev||[];const notes=(data.notes||[]).filter(n=>n.date===d&&!n.done);
+   const we=i>=5;const empty=!day.jobs.length&&!day.ev.length&&!notes.length;
+   let b='';
+   if(day.jobs.length)day.jobs.forEach(j=>{nJobs++;nH+=Number(j.h||0);b+=`<div class="pl-job" style="--c:${esc(j.c||'#2dd4bf')}"><b>${esc(j.e)}</b><small>${j.st?`${hh(j.st)} – ${hh(j.et)}`:'Journée'}${j.h?` · ${j.h} h`:''}${j.loc?`<br>${esc(j.loc)}`:''}</small></div>`});
+   else b+=`<div class="pl-free">${we?'Repos':'Pas de mission'}</div>`;
+   (data.children||[]).forEach(c=>{const k=day.kids?.[c.id];if(!k)return;const chips=Object.keys(SL).filter(s=>k[s]>=0).map(s=>{const st=k[s];if(st===2)nRes++;if(st===1){nRes++;nPend++}const cls=s==='centre'?(st===2?'ca':st===1?'p':'n'):(st===2?'c':st===1?'p':'n');return`<span class="pl-s ${cls}">${SL[s]}${s==='centre'&&k.vac?' vac.':''}${st===2&&s==='centre'?' ✓':st===1?' ?':''}</span>`}).join('');if(chips)b+=`<div class="pl-kid">${esc(c.name)}</div><div class="pl-slots">${chips}</div>`});
+   day.ev.forEach(e=>b+=`<div class="pl-evt">${e.tm?`<span>${esc(e.tm)}</span> `:''}${esc(e.t)}</div>`);
+   alerts(day,data.children||[]).forEach(a=>b+=`<div class="pl-warn">⚠ ${esc(a)}</div>`);
+   notes.forEach(n=>b+=`<div class="pl-note">📝 ${esc(n.text)}</div>`);
+   const dn=pD(d).toLocaleDateString('fr-FR',{weekday:'short'}).replace('.','');
+   html+=`<div class="pl-day${d===today?' today':''}${we?' we':''}${we&&empty?' empty':''}"><div class="pl-dh"><span>${dn}${d===today?' · auj.':''}</span><b>${pD(d).getDate()}</b></div><div class="pl-body">${b}</div></div>`}
+  html+='</div>';
+  html+=`<div class="pl-sum"><span>Cette semaine : <b>${nJobs} mission${nJobs>1?'s':''} · ${nH} h</b></span><span>Enfants : <b>${nRes} réservation${nRes>1?'s':''}</b>${nPend?` dont <b style="color:var(--gold)">${nPend} à confirmer</b>`:''}</span>${data.counter?`<span>Compteur : <b>${data.counter.hours} h / ${data.counter.req} h</b></span>`:''}</div>`;
+  return html}
+ function notesList(notes,ws,opt={}){const we=addDays(ws,6);const list=(notes||[]).filter(n=>!n.done||(n.doneAt||'')>=ws).filter(n=>!n.date||n.date<=we||!n.done).sort((a,b)=>(a.done-b.done)||((a.date||'9999').localeCompare(b.date||'9999')));
+  if(!list.length)return`<div class="pl-empty">${opt.editable?'Aucune info pour l’instant. Ajoute ce qu’il ne faut pas oublier : rendez-vous, papiers, sorties…':'Aucune info pour le moment.'}</div>`;
+  return list.map(n=>{const t=TAGS[n.tag]||TAGS.Autre;return`<div class="pl-info${n.done?' done':''}">${opt.editable?`<button class="pl-cb${n.done?' ok':''}" data-ntog="${esc(n.id)}" aria-label="Fait">${n.done?'✓':''}</button>`:`<span class="pl-cb${n.done?' ok':''}">${n.done?'✓':''}</span>`}<div class="pl-t"><b>${esc(n.text)}</b><small>${n.date?pD(n.date).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'short'}):'Sans date'}</small></div>${n.tag?`<span class="pl-tag" style="background:${t[0]};color:${t[1]}">${esc(n.tag)}</span>`:''}${opt.editable?`<button class="pl-del" data-ndel="${esc(n.id)}" aria-label="Supprimer">×</button>`:''}</div>`}).join('')}
+ const legend=`<div class="pl-legend"><span><i style="background:#2dd4bf"></i>Mission</span><span><i style="background:#fbbf24"></i>Agenda</span><span><i style="background:#2dd4bf44;border:1px solid #2dd4bf"></i>Réservé</span><span><i style="background:#fbbf2433;border:1px solid #fbbf24"></i>À confirmer</span><span><i style="background:#a78bfa44;border:1px solid #a78bfa"></i>Centre aéré</span></div>`;
+ return{render,notesList,weekLabel,monday:d=>iso(monday(d)),addDays,iso,legend}})();
+
+(()=>{
+ const LS='planning-famille-lien',CACHE='planning-famille-cache';
+ const $=s=>document.querySelector(s);
+ const b64d=s=>Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')+'==='.slice((s.length+3)%4)),c=>c.charCodeAt(0));
+ const h=new URLSearchParams(location.hash.slice(1));
+ if(h.get('f')&&h.get('k')){try{localStorage.setItem(LS,JSON.stringify({f:h.get('f'),k:h.get('k')}))}catch{}}
+ let link=null;try{link=JSON.parse(localStorage.getItem(LS))}catch{}
+ let data=null,week=PL.monday(new Date()),err='';
+ try{data=JSON.parse(localStorage.getItem(CACHE))}catch{}
+ async function decrypt(k,payload){const p=JSON.parse(payload);const key=await crypto.subtle.importKey('raw',b64d(k),'AES-GCM',false,['decrypt']);const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64d(p.iv)},key,b64d(p.ct));return JSON.parse(new TextDecoder().decode(pt))}
+ async function load(){if(!link){render();return}const key=window.ME_CONFIG?.apiKey;if(!key){err='Configuration incomplète (clé API manquante).';render();return}
+  try{$('#upd').textContent='Mise à jour…';const r=await fetch(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(link.f)}?alt=media&key=${encodeURIComponent(key)}`,{cache:'no-store'});if(r.status===404||r.status===403){err='Ce planning n’est plus partagé. Demande un nouveau lien.';render();return}if(!r.ok)throw new Error(r.status);const txt=await r.text();if(txt.trim()==='{}'){err='Le planning est en cours de préparation, réessaie dans un instant.';render();return}data=await decrypt(link.k,txt);err='';try{localStorage.setItem(CACHE,JSON.stringify(data))}catch{}}catch(e){err=data?'Pas de connexion : affichage de la dernière version reçue.':'Impossible de charger le planning. Vérifie ta connexion internet.'}render()}
+ function render(){const app=$('#app');
+  if(!link){app.innerHTML='<div class="welcome"><b>Planning familial</b><br>Ouvre le lien qui t’a été envoyé pour afficher le planning.</div>';$('#upd').textContent='';return}
+  if(!data){app.innerHTML=`<div class="welcome">${err||'Chargement du planning…'}</div>`;return}
+  $('#ttl').textContent=data.owner?`Planning de ${data.owner}`:'Planning';
+  $('#upd').textContent=data.updated?`Mis à jour ${new Date(data.updated).toLocaleString('fr-FR',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}`:'';
+  app.innerHTML=`${err?`<div class="banner ${data?'warn':'err'}">${err}</div>`:''}<div class="card"><div class="pl-head"><div><h3>Planning</h3><p>Missions, agenda et réservations des enfants</p></div><div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;max-width:100%"><div class="pl-nav"><button id="p">‹</button><span>${PL.weekLabel(week)}</span><button id="n">›</button><button class="tdy" id="t">Auj.</button></div>${PL.legend}</div></div>${PL.render(data,week)}</div><div class="card"><div class="pl-head"><div><h3>Infos de la semaine</h3><p>Ce qu’il ne faut pas oublier</p></div></div>${PL.notesList(data.notes,week)}</div>`;
+  $('#p').onclick=()=>{week=PL.addDays(week,-7);render()};$('#n').onclick=()=>{week=PL.addDays(week,7);render()};$('#t').onclick=()=>{week=PL.monday(new Date());render()}}
+ $('#refresh').onclick=load;
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
+ setInterval(()=>{if(document.visibilityState==='visible')load()},5*60e3);
+ render();load();
+ if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+})();
+</script>
+</body>
+</html>
